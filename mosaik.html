@@ -1,0 +1,141 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script src="popup.js"></script>
+<script type="text/javascript">
+	var urls= new Array();
+	var counter;
+	counter = 0;
+	
+	function ShowImageInPopup(image,title)
+{
+	document.getElementById("popup2").setAttribute("style", "visibility:visible;");
+    $("#popupImage").attr('src',image);
+    $("#popupTitle").html(title);
+    popup.Post('popup2',500);
+    //popup.UnPost();
+    localStorage.setItem ("image", (image))
+}
+
+	function addfav ()
+{
+	var link= localStorage.getItem ("image");
+	urls[counter]= link;
+	counter++
+	var f = JSON.stringify(urls)
+    localStorage.setItem("urls",f)
+    localStorage.setItem("counter", counter)
+	alert("Added to your favorite pictures!")
+	
+}
+mosaic = {};
+function unSerialize() {
+    var f = localStorage.getItem("urls")
+    alert('g= ' + f)
+    eval('g=' + f)
+}
+var a;
+var b;
+var c;
+var d;
+var images= new Array();
+var imagesbig = new Array();
+  function jsonFlickrApi(rsp) {
+   window.rsp = rsp;
+    b = rsp.photos.photo.length ;
+    // http://farm{id}.static.flickr.com/{server-id}/{id}_{secret}_[mstb].jpg
+    // http://www.flickr.com/photos/{user-id}/{photo-id}
+
+    for (var i=0; i <= rsp.photos.photo.length; i++ )
+    {
+      photo = rsp.photos.photo[i];
+     images[i] = "http://farm" + photo.farm + ".static.flickr.com/" +
+        photo.server + "/" + photo.id + "_" + photo.secret + "_" + "s.jpg";
+     imagesbig[i]= "http://farm" + photo.farm + ".static.flickr.com/" +
+        photo.server + "/" + photo.id + "_" + photo.secret + ".jpg";
+    }
+    }
+  jsonFlickrApi({"photos":{"page":1, "pages":144, "perpage":100, "total":"14324", "photo":[{"id":"7142181631", "owner":"7448869@N03", "secret":"16020470db", "server":"7133", "farm":8, "title":"Vananda_01", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7142099897", "owner":"7448869@N03", "secret":"b5df054146", "server":"7089", "farm":8, "title":"Diafani_03", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6996013590", "owner":"7448869@N03", "secret":"80b0fb5811", "server":"7250", "farm":8, "title":"Diafani_02", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6985775238", "owner":"7448869@N03", "secret":"90063994a6", "server":"8161", "farm":9, "title":"Avlona", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6985722060", "owner":"7448869@N03", "secret":"e58ff599e6", "server":"7109", "farm":8, "title":"Diafani_09", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7124121685", "owner":"66191200@N07", "secret":"1606fb8a42", "server":"8017", "farm":9, "title":"No strings attached", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7121291405", "owner":"47763274@N05", "secret":"a081554a35", "server":"7253", "farm":8, "title":"karpathos, Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7118411513", "owner":"47763274@N05", "secret":"6ee9724894", "server":"8026", "farm":9, "title":"Olymbos, Karpathos - Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7115673809", "owner":"47763274@N05", "secret":"6495c144d2", "server":"7061", "farm":8, "title":"M\u00e9n\u00e9t\u00e8s, Karpathos - Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7112458429", "owner":"47763274@N05", "secret":"bb0306f060", "server":"7058", "farm":8, "title":"M\u00e9n\u00e9t\u00e8s, Karpathos - Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7109288051", "owner":"47763274@N05", "secret":"9e2ebfc10d", "server":"7266", "farm":8, "title":"M\u00e9n\u00e9t\u00e8s, Karpathos - Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7106544317", "owner":"47763274@N05", "secret":"cf349d77f2", "server":"8143", "farm":9, "title":"Karpathos, Greece", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7105541299", "owner":"66191200@N07", "secret":"a59dfc9e0d", "server":"7189", "farm":8, "title":"Fokias beach,Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7090907527", "owner":"61745419@N03", "secret":"b9889c6b3f", "server":"5325", "farm":6, "title":"DSC06238", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6944838864", "owner":"61745419@N03", "secret":"b5ba476acf", "server":"7212", "farm":8, "title":"DSC06239", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7090905065", "owner":"61745419@N03", "secret":"93fa4cb67a", "server":"7276", "farm":8, "title":"DSC06240", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6944836742", "owner":"61745419@N03", "secret":"66a2dcc4b4", "server":"7261", "farm":8, "title":"DSC06241", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938810028", "owner":"61745419@N03", "secret":"b402ab9a5b", "server":"5200", "farm":6, "title":"DSC06176", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938817414", "owner":"61745419@N03", "secret":"fba357e305", "server":"7218", "farm":8, "title":"Dandelion II", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084897127", "owner":"61745419@N03", "secret":"a7eb7d6c9f", "server":"5446", "farm":6, "title":"DSC06220", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084891599", "owner":"61745419@N03", "secret":"8e4b6afe4f", "server":"7086", "farm":8, "title":"Dandelion III", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938823066", "owner":"61745419@N03", "secret":"474a1ab038", "server":"7100", "farm":8, "title":"DSC06222", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084893499", "owner":"61745419@N03", "secret":"8a65f815cb", "server":"7266", "farm":8, "title":"Dandelion I", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938807808", "owner":"61745419@N03", "secret":"77ddb8c747", "server":"7225", "farm":8, "title":"DSC06156", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084888721", "owner":"61745419@N03", "secret":"141bcd046a", "server":"7219", "farm":8, "title":"DSC06187", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938812492", "owner":"61745419@N03", "secret":"16e24f9133", "server":"7133", "farm":8, "title":"DSC06180", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938821112", "owner":"61745419@N03", "secret":"228968157e", "server":"7233", "farm":8, "title":"DSC06217", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084890451", "owner":"61745419@N03", "secret":"015600dc8c", "server":"5118", "farm":6, "title":"DSC06199", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7084884787", "owner":"61745419@N03", "secret":"20fca6d155", "server":"5460", "farm":6, "title":"DSC06157", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938823998", "owner":"61745419@N03", "secret":"74c289c3f2", "server":"5342", "farm":6, "title":"DSC06229", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6938811354", "owner":"61745419@N03", "secret":"6824844988", "server":"7036", "farm":8, "title":"DSC06178", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6933168538", "owner":"32815265@N06", "secret":"093d353c61", "server":"7184", "farm":8, "title":"Olymbos in the morning....", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7063591121", "owner":"69139078@N05", "secret":"8e2d80ae7c", "server":"7179", "farm":8, "title":"Lookers Night Club Karpathos - Thomas Kasiotis", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7044496041", "owner":"69139078@N05", "secret":"8cf556ff4f", "server":"7060", "farm":8, "title":"Business Cards - MIchalis Protopapas", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7042385355", "owner":"90036166@N00", "secret":"dd311322ff", "server":"7231", "farm":8, "title":"MY JOB tv furniture", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7032502657", "owner":"76822140@N08", "secret":"313533e9df", "server":"7127", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7032502327", "owner":"76822140@N08", "secret":"4aa0d640f7", "server":"7094", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7032501559", "owner":"76822140@N08", "secret":"9d84597bb1", "server":"7118", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7032502501", "owner":"76822140@N08", "secret":"b6100e50b8", "server":"7240", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7016733715", "owner":"76822140@N08", "secret":"f0221c405e", "server":"7275", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6870625888", "owner":"76822140@N08", "secret":"e812a596c9", "server":"7192", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"7016733785", "owner":"76822140@N08", "secret":"816edaa322", "server":"7241", "farm":8, "title":"TUS in Life Club", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6856314878", "owner":"69139078@N05", "secret":"87f03a273c", "server":"7190", "farm":8, "title":"Lookers Night Club Karpathos - 25\u03b7 \u039c\u03b1\u03c1\u03c4\u03af\u03bf\u03c5", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6999641277", "owner":"69139078@N05", "secret":"e243a624d1", "server":"6091", "farm":7, "title":"Life Club Karpathos - TUS Live event!!", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6847375410", "owner":"16433024@N06", "secret":"18dff48c9f", "server":"7041", "farm":8, "title":"Adeia, Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6829838070", "owner":"56023222@N00", "secret":"a6253105fe", "server":"7041", "farm":8, "title":"\u038c\u03bb\u03c5\u03bc\u03c0\u03bf\u03c2 \u039a\u03b1\u03c1\u03c0\u03ac\u03b8\u03bf\u03c5, \u03c3\u03bf\u03cd\u03c1\u03bf\u03c5\u03c0\u03bf", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6829837750", "owner":"56023222@N00", "secret":"10874f99a6", "server":"7186", "farm":8, "title":"\u039a\u03ac\u03c1\u03c0\u03b1\u03b8\u03bf\u03c2, \u039a\u03c5\u03c1\u03b1 \u03a0\u03b1\u03bd\u03b1\u03b3\u03b9\u03ac \u03c0\u03b1\u03c1\u03b1\u03bb\u03af\u03b1", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968830947", "owner":"61745419@N03", "secret":"a993cd4658", "server":"7048", "farm":8, "title":"\u039c\u03c0\u03bf\u03c1\u03b5\u03af \u03ba\u03ac\u03c0\u03bf\u03b9\u03b1 \u03bc\u03ad\u03c1\u03b1 \u03bd\u03b1 \u03b4\u03c1\u03b1\u03c0\u03b5\u03c4\u03b5\u03cd\u03c3\u03bf\u03c5\u03bc\u03b5 \u03bc\u03b1\u03b6\u03af...", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6822706324", "owner":"61745419@N03", "secret":"e571842287", "server":"7065", "farm":8, "title":"Raindrops III", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968830247", "owner":"61745419@N03", "secret":"74e998ef0b", "server":"7210", "farm":8, "title":"Raindrops II - Tears I've Shed For One Illusion", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968828329", "owner":"61745419@N03", "secret":"ee4b8f9c43", "server":"7053", "farm":8, "title":"Raindrops IV", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6822707138", "owner":"61745419@N03", "secret":"57fac3e397", "server":"7055", "farm":8, "title":"DSC05931", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968830529", "owner":"61745419@N03", "secret":"f3ea8e72fe", "server":"7176", "farm":8, "title":"Raindrops I", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6822706050", "owner":"61745419@N03", "secret":"c09d28214b", "server":"7054", "farm":8, "title":"DSC05842", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6822705682", "owner":"61745419@N03", "secret":"9153849bec", "server":"7044", "farm":8, "title":"DSC05831", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968829059", "owner":"61745419@N03", "secret":"0094a7feb5", "server":"7046", "farm":8, "title":"Golden Ratio", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6968828707", "owner":"61745419@N03", "secret":"d3d56fb464", "server":"7210", "farm":8, "title":"DSC05774", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6961097231", "owner":"77551983@N02", "secret":"4473284270", "server":"7064", "farm":8, "title":"SWblue", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803794510", "owner":"76822140@N08", "secret":"391af94386", "server":"7060", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803797040", "owner":"76822140@N08", "secret":"020d17ef14", "server":"7047", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949905327", "owner":"76822140@N08", "secret":"2432c5c24a", "server":"7195", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803796308", "owner":"76822140@N08", "secret":"79d0ec2884", "server":"7057", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949907291", "owner":"76822140@N08", "secret":"9e8207843d", "server":"7061", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803793650", "owner":"76822140@N08", "secret":"d1050d3c6b", "server":"7041", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803794838", "owner":"76822140@N08", "secret":"798253f872", "server":"7187", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949903735", "owner":"76822140@N08", "secret":"58e80fa766", "server":"7070", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949902933", "owner":"76822140@N08", "secret":"9010ff07c4", "server":"7042", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803796012", "owner":"76822140@N08", "secret":"0af7a544c9", "server":"7195", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803793170", "owner":"76822140@N08", "secret":"00d9d6eeec", "server":"7069", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949904837", "owner":"76822140@N08", "secret":"8b0ced0099", "server":"7050", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949906603", "owner":"76822140@N08", "secret":"a15847e080", "server":"7209", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949905809", "owner":"76822140@N08", "secret":"08097499a1", "server":"7058", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803793008", "owner":"76822140@N08", "secret":"86b5b7deed", "server":"7198", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949907113", "owner":"76822140@N08", "secret":"ae2f0f444c", "server":"7205", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949905487", "owner":"76822140@N08", "secret":"04abb8424c", "server":"7176", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949905151", "owner":"76822140@N08", "secret":"d82b6f2e6f", "server":"7039", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803795458", "owner":"76822140@N08", "secret":"0cd5f4c1b9", "server":"7069", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803796720", "owner":"76822140@N08", "secret":"b1ff84718f", "server":"7063", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803798078", "owner":"76822140@N08", "secret":"161e00fffe", "server":"7200", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949903595", "owner":"76822140@N08", "secret":"2488b4d0ec", "server":"7050", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949906315", "owner":"76822140@N08", "secret":"95c7c41b22", "server":"7062", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949903437", "owner":"76822140@N08", "secret":"50a067fe03", "server":"7059", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803792784", "owner":"76822140@N08", "secret":"de3b7666b0", "server":"7207", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803794358", "owner":"76822140@N08", "secret":"b6d65a969f", "server":"7179", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949902575", "owner":"76822140@N08", "secret":"fa0e8b8448", "server":"7207", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949907681", "owner":"76822140@N08", "secret":"aaa5dba27c", "server":"7180", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803797222", "owner":"76822140@N08", "secret":"bc0581ecb4", "server":"7204", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949904191", "owner":"76822140@N08", "secret":"0374b4c5da", "server":"7197", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803796480", "owner":"76822140@N08", "secret":"d07129c213", "server":"7067", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949907483", "owner":"76822140@N08", "secret":"d609af91cc", "server":"7047", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803795142", "owner":"76822140@N08", "secret":"c309378c65", "server":"7055", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949902239", "owner":"76822140@N08", "secret":"ee59f98e52", "server":"7205", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949908001", "owner":"76822140@N08", "secret":"367b7a3a06", "server":"7181", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803793486", "owner":"76822140@N08", "secret":"d66f91ca88", "server":"7044", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949906869", "owner":"76822140@N08", "secret":"72790f6e6c", "server":"7186", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949904519", "owner":"76822140@N08", "secret":"898aaa978a", "server":"7200", "farm":8, "title":"Life Club Karpathos", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949264249", "owner":"76822140@N08", "secret":"09a683d693", "server":"7200", "farm":8, "title":"\u039c\u03b1\u03c3\u03ba\u03ad \u00abMadness\u00bb \u03a0\u03ac\u03c1\u03c4\u03b9", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803154688", "owner":"76822140@N08", "secret":"0b96fb0296", "server":"7055", "farm":8, "title":"\u039c\u03b1\u03c3\u03ba\u03ad \u00abMadness\u00bb \u03a0\u03ac\u03c1\u03c4\u03b9", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6949268513", "owner":"76822140@N08", "secret":"7abc1f40f0", "server":"7037", "farm":8, "title":"\u039c\u03b1\u03c3\u03ba\u03ad \u00abMadness\u00bb \u03a0\u03ac\u03c1\u03c4\u03b9", "ispublic":1, "isfriend":0, "isfamily":0}, {"id":"6803156046", "owner":"76822140@N08", "secret":"3a33c573ea", "server":"7178", "farm":8, "title":"\u039c\u03b1\u03c3\u03ba\u03ad \u00abMadness\u00bb \u03a0\u03ac\u03c1\u03c4\u03b9", "ispublic":1, "isfriend":0, "isfamily":0}]}, "stat":"ok"})
+   //or make url at: http://www.flickr.com/services/api/explore/flickr.photos.search
+function makeMosaic(root,rows,columns) {
+    var element=document.getElementById(root);
+    var id;
+    mosaic.rows    = rows;
+    mosaic.columns = columns;
+    var count = 0;
+    for(var y=0; y< rows; y++) {
+	for(var x=0; x< columns; x++) {
+	    var id = 'i'+count;
+	    count++;
+
+	    var ie = document.createElement('img');
+	    ie.setAttribute('id',id);
+	    ie.setAttribute('src', 'images/black.jpg');
+	    element.appendChild(ie);
+	}
+	var br = document.createElement('br');
+	element.appendChild(br);
+    }
+    mosaic.all     = count;
+}
+
+function onTimer() {
+    var x = Math.floor(mosaic.all*Math.random());
+    var id = 'i'+x;
+    var e = 1;
+    var ie = document.getElementById(id);
+    a= Math.floor(Math.random()*b)
+	c =images[a];
+	d =imagesbig[a];
+    ie.setAttribute('src',(c));
+    ie.setAttribute('onclick', "javascript:ShowImageInPopup('" + d + "')");
+    // ShowImageInPopup(image,title)
+    setTimeout(onTimer,2000);
+}
+
+function main() {
+    makeMosaic('mosaicFrame',10,10);
+    setTimeout(onTimer,100);
+}
+
+
+</script>
+<link rel="stylesheet" type="text/css" href="popup.css" />
+<style>
+ul {list-style-type:none;margin-top: 0;overflow:hidden;width:100%;background-color: #98bf21;}
+li {float: left;width 100%;}
+a.menu:link, a.menu:visited {display:block;width:247px;font-weight:bold;color:#FFFFFF;background-color:#98bf21;text-align:center;padding:4px;text-decoration:none;text-transform:uppercase;}
+a.menu:hover,a.menu:active {background-color:#7A991A;}
+body {margin: 0 auto; font-family: Tahoma; background: url(images/verlauf.jpg) repeat;}
+h1{color: #fff; font-size:30px; text-align:left; text-shadow: 1px 1px 1px #333;}
+#mosaicFrame {width:750px;border: 1px solid #808080;margin: 0 auto;}
+#header {margin: 0 auto;width:1000px;}
+</style>
+<ul>
+<li></li>
+<li><a class="Menu" style="a:hover,a:active {background-color:#7A991A;}" href="mosaik.html">Mosaik</a></li>
+<li><a class="Menu" href="slideshow.html">Slideshow</a></li>
+<li><a class="Menu" href="#contact" >noch frei</a></li>
+<li><a class="Menu" href="#about">lorem ipsum</a></li>
+</ul>
+<div id="header">
+<h1>Mosaik</h1>
+</div>
+
+</head>
+
+	
+<div id="mosaicFrame">
+<body onload="javascript:main()">
+</div>
+   <div id="popup2" class="popupBlock" style="visibility:hidden;">
+<img id="popupImage" style="" src=""/>
+<button id="favbutton" onclick="javascript:addfav()">FAV</button>
+<button onclick="unSerialize()">UNSERIALIZE</button>
+</div>
+</body>
+</html>
+
+
+
+

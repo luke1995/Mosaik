@@ -1,0 +1,141 @@
+<html>
+
+<head>
+	
+	
+	<title>Slideshow!</title>
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="author" content="Lukas Zervudakis"/>
+	<meta name="keywords" content="Karpathos, Slideshow, Pictures, Images, Photo, Photography"/>
+	<meta name="description" content="A Slideshow with Pictures about Karpathos"/>
+	<meta name="robots" content="INDEX, FOLLOW"/>
+
+	<style>
+		
+		
+ul {list-style-type:none;margin-top: 0;margin:0;padding-right: 285;overflow:hidden;width:1026px;background-color: #98bf21;}
+li {float: left;width 1026px;}
+a.menu:link, a.menu:visited {display:block;width:247px;font-weight:bold;color:#FFFFFF;background-color:#98bf21;text-align:center;padding:4px;text-decoration:none;text-transform:uppercase;}
+a.menu:hover,a.menu:active {background-color:#7A991A;}
+	
+	
+
+	body {margin: 0 auto; font-family: Tahoma; background: url(images/verlauf.jpg) repeat-x;}	
+	h1{color: #fff; font-size:30px; text-align:left; text-shadow: 1px 1px 1px #333;}
+	#wrapper {margin: 0 auto; width: 1026px;}
+	#buttons {width: 150px; margin: 0 auto; margin-top: 10px;}
+	#image {border: 1px solid #808080; margin: 0 auto;}
+	#footer {color: #fff; text-shadow: 1px 1px 1px #333; font-size: 12px; width: 250px; margin: 0 auto;}
+	
+	</style>
+	
+	<script type="text/javascript">
+	var counter = localStorage.getItem("counter");
+	var out=localStorage.getItem("urls");
+	var urls = eval(out)
+	var counter2;
+	counter2=0;
+		
+	for (var x=0; x <= counter; x++)
+{
+	var ("image" + counter2) = new Image()
+	("image" + counter2).src=urls[counter2]
+	counter2++;
+}
+
+var number=1
+
+
+				function showurls()
+{
+	document.write (urls[0] + counter)
+}
+function stop()
+{
+clearTimeout(t);
+document.getElementById("start").setAttribute("onclick", "javascript:start()")
+}
+//Funktion zum Anhalten der Slideshow
+function start()
+{
+	if (!document.images)
+		return
+		document.images.picture.src=eval("image"+number+".src")
+	if (number<counter)
+		number++
+	else
+		number=1;
+t=setTimeout("start()",1000); //Zahl kann nach belieben geändert werden, steuert die Dauer der angezeigten Bilder
+document.getElementById("start").setAttribute("onclick", " ");
+}	
+//Funktion zum Starten
+function next(){
+if (number<counter) //Zahl=Anzahl der Bilder
+number++
+else
+number=1
+if (!document.images)
+return
+document.images.picture.src=eval("image"+number+".src")
+}
+//Funktion fürs nächste Bild
+function back()
+{
+if (number>1)
+number--
+else
+number=counter
+if (!document.images)
+return
+document.images.picture.src=eval("image"+number+".src")
+}
+//Funktion fürs letzte Bild
+
+
+
+
+</script>
+
+<div align="left" id="header">
+<ul>
+<li><a class="Menu" style="a:hover,a:active {background-color:#7A991A;}" href="mosaik.html">Mosaik</a></li>
+<li><a class="Menu" href="slideshow.html">Slideshow</a></li>
+<li><a class="Menu" href="#contact" >noch frei</a></li>
+<li><a class="Menu" href="#about">lorem ipsum</a></li>
+</ul>
+</div>
+
+</head>
+
+<body>
+<div id="wrapper">
+
+	<h1>Slideshow</h1>
+	<br>
+	<br>
+
+
+<div id="image">
+	<img src="images/image1.jpg"  name="picture">
+<!-- Das jeweils angezeigte Bild -->
+</div>
+
+<div id="buttons">
+	<a onclick='javascript:back()'><img src="images/bwd.png"></a> <!-- Button -->
+	<a onclick='javascript:stop()'><img src="images/stop.png"></a>
+	<a id="start" onclick='javascript:start()'><img src="images/start.png"></a>
+	<a onclick='javascript:next()'><img src="images/fwd.png"></a>
+	<button onclick="javascript:showurls()"> show link</button>
+	</div>
+	
+</div>
+
+<div id="footer">
+	Javascript Slideshow | Lukas Zervudakis
+
+</div>
+
+</body>
+
+</html>

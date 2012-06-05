@@ -1,0 +1,39 @@
+<html>
+<head>
+<script>
+function clickCounter()
+{
+if(typeof(Storage)!=="undefined")
+  {
+	 var a = 0;
+	 a++
+	 var b = "picture" + a;
+	var c = "http://d24w6bsrhbeh9d.cloudfront.net/photo/4314949_460s_v1.jpg";
+	localStorage.setItem ((b), (c))
+
+   
+  document.getElementById("result").innerHTML="You have clicked the button "+ localStorage.picture1 + " time(s).";
+  }
+}
+</script>
+</head>
+<body>
+<p><button onclick="clickCounter()" type="button">Click me!</button></p>
+<div id="result"></div>
+<p>Click the button to see the counter increase.</p>
+<p>Close the browser tab (or window), and try again, and the counter will continue to count (is not reset).</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
