@@ -28,6 +28,7 @@ $('a.close, #fade').live('click', function() {
     $('#fade , .popupBlock').fadeOut(function() {
         $('#fade, a.close').remove();  //fade them both out
     });
+    onUnpop()
     return false;
 });
 

@@ -4,8 +4,8 @@
 <script src="popup.js"></script>
 <script type="text/javascript">
 	var urls= new Array();
-	var counter;
-	counter = 0;
+	var out=localStorage.getItem("urls");
+	//var urls = eval(out);
 	
 	function ShowImageInPopup(image,title)
 {
@@ -16,16 +16,33 @@
     //popup.UnPost();
     localStorage.setItem ("image", (image))
 }
+	function onUnpop()
+	{
+		document.getElementById("popupImage").setAttribute("src", "");
+	}
 
 	function addfav ()
 {
+  if(typeof(Storage)!=="undefined")
+  {
+  if (localStorage.counter)
+    {
+    localStorage.counter=Number(localStorage.counter);
+    }
+  else
+    {
+    localStorage.counter=0;
+    }
+  }
+  	var counter= localStorage.getItem("counter");
 	var link= localStorage.getItem ("image");
+	//var counter = localStorage.getItem("counter");
 	urls[counter]= link;
-	counter++
-	var f = JSON.stringify(urls)
-    localStorage.setItem("urls",f)
-    localStorage.setItem("counter", counter)
-	alert("Added to your favorite pictures!")
+	counter++;
+	var f = JSON.stringify(urls);
+    localStorage.setItem("urls",f);
+    localStorage.setItem("counter", counter);
+	alert("Added to your favorite pictures!");
 	
 }
 mosaic = {};
@@ -34,6 +51,14 @@ function unSerialize() {
     alert('g= ' + f)
     eval('g=' + f)
 }
+function Delete()
+{
+	localStorage.setItem("counter", "");
+	localStorage.setItem("urls", "x");
+	alert("Local Storage deleted!" + urls);
+	var urls= new Array();
+}
+
 var a;
 var b;
 var c;
@@ -115,7 +140,7 @@ h1{color: #fff; font-size:30px; text-align:left; text-shadow: 1px 1px 1px #333;}
 <li></li>
 <li><a class="Menu" style="a:hover,a:active {background-color:#7A991A;}" href="mosaik.html">Mosaik</a></li>
 <li><a class="Menu" href="slideshow.html">Slideshow</a></li>
-<li><a class="Menu" href="#contact" >noch frei</a></li>
+<li><a class="Menu" href="slideshowfav.html" >Slideshow with your favorite pictures</a></li>
 <li><a class="Menu" href="#about">lorem ipsum</a></li>
 </ul>
 <div id="header">
@@ -124,14 +149,15 @@ h1{color: #fff; font-size:30px; text-align:left; text-shadow: 1px 1px 1px #333;}
 
 </head>
 
-	
-<div id="mosaicFrame">
 <body onload="javascript:main()">
+<div id="mosaicFrame">
+
 </div>
-   <div id="popup2" class="popupBlock" style="visibility:hidden;">
+   <div id="popup2" class="popupBlock" style="visibility:hidden;width:200px;height:400px;">
 <img id="popupImage" style="" src=""/>
 <button id="favbutton" onclick="javascript:addfav()">FAV</button>
-<button onclick="unSerialize()">UNSERIALIZE</button>
+<button onclick="javascript:unSerialize()">UNSERIALIZE</button>
+<button onclick="javascript:Delete()">Delete</button>
 </div>
 </body>
 </html>

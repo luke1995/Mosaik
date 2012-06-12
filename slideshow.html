@@ -31,39 +31,50 @@ a.menu:hover,a.menu:active {background-color:#7A991A;}
 	</style>
 	
 	<script type="text/javascript">
-	var counter = localStorage.getItem("counter");
-	var out=localStorage.getItem("urls");
-	var urls = eval(out)
-	var counter2;
-	counter2=0;
+var counter = localStorage.getItem("counter");
+var currentslideshowpicture = 0;
+var out=localStorage.getItem("urls");
+var urls = eval(out);
 		
-	for (var x=0; x <= counter; x++)
-{
-	var ("image" + counter2) = new Image()
-	("image" + counter2).src=urls[counter2]
-	counter2++;
-}
+		
+<!--
+var image1=new Image()
+image1.src="images/image1.jpg"
+var image2=new Image()
+image2.src="images/image2.jpg"
+var image3=new Image()
+image3.src="images/image3.jpg"
+var image4=new Image()
+image4.src="images/image4.jpg"
+var image5=new Image()
+image5.src="images/image5.jpg"
+var image6=new Image()
+image6.src="images/image6.jpg"
+var image7=new Image()
+image7.src="images/image7.jpg"
+var image8=new Image()
+image8.src="images/image8.jpg"
+var image9=new Image()
+image9.src="images/image9.jpg"
+//Bilder für die Slideshow, alle müssen imagex.jpg heißen.
+var number=1;
+var maxpictures=9; //Anzahl Bilder in der Slideshow
 
-var number=1
 
 
-				function showurls()
-{
-	document.write (urls[0] + counter)
-}
 function stop()
 {
 clearTimeout(t);
-document.getElementById("start").setAttribute("onclick", "javascript:start()")
+document.getElementById("start").setAttribute("onclick", "javascript:start()");
 }
 //Funktion zum Anhalten der Slideshow
 function start()
 {
 	if (!document.images)
 		return
-		document.images.picture.src=eval("image"+number+".src")
-	if (number<counter)
-		number++
+		document.images.picture.src=eval("image"+number+".src");
+	if (number<maxpictures)
+		number++;
 	else
 		number=1;
 t=setTimeout("start()",1000); //Zahl kann nach belieben geändert werden, steuert die Dauer der angezeigten Bilder
@@ -71,37 +82,33 @@ document.getElementById("start").setAttribute("onclick", " ");
 }	
 //Funktion zum Starten
 function next(){
-if (number<counter) //Zahl=Anzahl der Bilder
-number++
+if (number<maxpictures) //Zahl=Anzahl der Bilder
+number++;
 else
-number=1
+number=1;
 if (!document.images)
 return
-document.images.picture.src=eval("image"+number+".src")
+document.images.picture.src=eval("image"+number+".src");
 }
 //Funktion fürs nächste Bild
 function back()
 {
 if (number>1)
-number--
+number--;
 else
-number=counter
+number=maxpictures;
 if (!document.images)
 return
-document.images.picture.src=eval("image"+number+".src")
+document.images.picture.src=eval("image"+number+".src");
 }
 //Funktion fürs letzte Bild
-
-
-
-
 </script>
 
 <div align="left" id="header">
 <ul>
 <li><a class="Menu" style="a:hover,a:active {background-color:#7A991A;}" href="mosaik.html">Mosaik</a></li>
 <li><a class="Menu" href="slideshow.html">Slideshow</a></li>
-<li><a class="Menu" href="#contact" >noch frei</a></li>
+<li><a class="Menu" href="slideshowfav.html" >Slideshow with your favorite pictures</a></li>
 <li><a class="Menu" href="#about">lorem ipsum</a></li>
 </ul>
 </div>
@@ -126,7 +133,6 @@ document.images.picture.src=eval("image"+number+".src")
 	<a onclick='javascript:stop()'><img src="images/stop.png"></a>
 	<a id="start" onclick='javascript:start()'><img src="images/start.png"></a>
 	<a onclick='javascript:next()'><img src="images/fwd.png"></a>
-	<button onclick="javascript:showurls()"> show link</button>
 	</div>
 	
 </div>
